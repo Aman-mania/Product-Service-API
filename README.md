@@ -27,8 +27,8 @@ ProductServiceAPI is a RESTful service built using **Spring Boot**, **MySQL**, a
 ### Steps to Run
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/aman-mania/ProductServiceAPI.git
-   cd ProductServiceAPI
+   git clone https://github.com/Aman-mania/Product-Service-API.git
+   cd Product-Service-API
    ```
 2. **Configure MySQL Database**
    - Update `application.properties` with your MySQL credentials.

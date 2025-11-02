@@ -1,0 +1,33 @@
+databases:
+  - name: product-db
+    plan: free
+    region: oregon
+    databaseName: product_db
+    user: product_user
+
+services:
+  - type: web
+    name: Product-Service-API
+    repo: https://github.com/Aman-mania/Product-Service-API
+    branch: main
+    env: java
+    plan: free
+    autodeploy: true
+    buildCommand: "./mvnw -DskipTests package"
+    startCommand: "java -Dserver.port=$PORT -jar target/*.jar"
+    healthCheckPath: "/actuator/health"
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: product-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: product-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: product-db
+          property: password
+      - key: JAVA_OPTS
+        value: "-Xms256m -Xmx512m"
